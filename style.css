@@ -14,11 +14,16 @@ button.hidden {
   border-radius: 10px;
 }
 
+.hidden{
+  display:none;
+}
+
 #gameButtonsArea > button {
   width:200px;
   height:200px;
   margin:2px;
 }
+
 #button1 {
     background: lightgreen;
 }
@@ -43,4 +48,9 @@ button.hidden {
 #button4:active,#button4.lit{
     background:yellow;
 }
-
+#button5 {
+    background: grey;
+}
+#button5:active,#button5.lit{
+    background: black;
+}

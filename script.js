@@ -1,5 +1,5 @@
 
-const clueHoldTime = 1000; //how long to hold each clue's light/sound
+var clueHoldTime = 1000; //how long to hold each clue's light/sound
 const cluePauseTime = 333; //how long to pause in between clues
 const nextClueWaitTime = 1000; //how long to wait before starting playback of the clue sequence
 var pattern = [2, 2, 4, 3, 2, 1, 2, 4];
@@ -8,13 +8,19 @@ var gamePlaying = false;
 var tonePlaying = false;
 var volume = 0.5;  //must be between 0.0 and 1.0
 var guessCounter = 0;
-
+var mistakes = 0;
 
 function startGame(){
     //initialize game variables
+    mistakes = 0;
     randomizedPattern()
     progress = 0;
     gamePlaying = true;
+    document.getElementById("png1").classList.add("hidden");
+    document.getElementById("png2").classList.add("hidden");
+    document.getElementById("png3").classList.add("hidden");
+    document.getElementById("png4").classList.add("hidden");
+    document.getElementById("png5").classList.add("hidden");
     document.getElementById("startbutton").classList.add("hidden");
     document.getElementById("stopbutton").classList.remove("hidden");
     playClueSequence()
@@ -39,18 +45,34 @@ o.start(0)
 
 function lightButton(btn){
   document.getElementById("button"+btn).classList.add("lit")
+  showPicture(btn);
 }
 
 function clearButton(btn){
   document.getElementById("button"+btn).classList.remove("lit")
+  removePicture(btn)
 }
+
+function showPicture(btn){
+  document.getElementById("png"+btn).classList.remove("hidden")
+  console.log("png"+btn)
+}
+
+function removePicture(btn){
+  document.getElementById("png"+btn).classList.add("hidden")
+  console.log("hide png"+btn)
+
+}
+
+
 
 // Sound Synthesis Functions
 const freqMap = {
   1: 261.6,
   2: 329.6,
   3: 392,
-  4: 466.2
+  4: 466.2,
+  5: 534.2
 }
 
 function playTone(btn,len){ 
@@ -87,6 +109,7 @@ function playSingleClue(btn){
 }
 
 function playClueSequence(){
+  clueHoldTime-=30;
   guessCounter = 0;
   context.resume()
   let delay = nextClueWaitTime; //set delay to initial wait time
@@ -114,8 +137,16 @@ function guess(btn){
     return;
   }
     if(pattern[guessCounter]!=btn){
+      if(mistakes==3){
       loseGame()
+      }
+      else{
+        mistakes+=1
+        alert("Emm you got "+(3-mistakes)+" tries left")
+      }
+      
     }
+    else{
       if(guessCounter==pattern.length-1){
         winGame()
       }
@@ -126,12 +157,13 @@ function guess(btn){
           progress++;
           playClueSequence()
         }
+    }
   // add game logic here
 }
 
 function randomizedPattern() {
   for(let i=0;i<pattern.length;i++){ // for each clue that is revealed so far
-    pattern[i]=Math.floor((Math.random()*3+1))
+    pattern[i]=Math.floor((Math.random()*5+1))
   }
 }
 
