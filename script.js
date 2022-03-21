@@ -12,18 +12,19 @@ var guessCounter = 0;
 
 function startGame(){
     //initialize game variables
+    randomizedPattern()
     progress = 0;
     gamePlaying = true;
     document.getElementById("startbutton").classList.add("hidden");
     document.getElementById("stopbutton").classList.remove("hidden");
     playClueSequence()
 }
+
 function stopGame(){
     gamePlaying = false;
     document.getElementById("stopbutton").classList.add("hidden");
     document.getElementById("startbutton").classList.remove("hidden");
 }
-
 
 // Page Initialization
 // Init Sound Synthesizer
@@ -39,9 +40,11 @@ o.start(0)
 function lightButton(btn){
   document.getElementById("button"+btn).classList.add("lit")
 }
+
 function clearButton(btn){
   document.getElementById("button"+btn).classList.remove("lit")
 }
+
 // Sound Synthesis Functions
 const freqMap = {
   1: 261.6,
@@ -49,6 +52,7 @@ const freqMap = {
   3: 392,
   4: 466.2
 }
+
 function playTone(btn,len){ 
   o.frequency.value = freqMap[btn]
   g.gain.setTargetAtTime(volume,context.currentTime + 0.05,0.025)
@@ -58,6 +62,7 @@ function playTone(btn,len){
     stopTone()
   },len)
 }
+
 function startTone(btn){
   if(!tonePlaying){
     context.resume()
@@ -67,10 +72,12 @@ function startTone(btn){
     tonePlaying = true
   }
 }
+
 function stopTone(){
   g.gain.setTargetAtTime(0,context.currentTime + 0.05,0.025)
   tonePlaying = false
 }
+
 function playSingleClue(btn){
   if(gamePlaying){
     lightButton(btn);
@@ -78,6 +85,7 @@ function playSingleClue(btn){
     setTimeout(clearButton,clueHoldTime,btn);
   }
 }
+
 function playClueSequence(){
   guessCounter = 0;
   context.resume()
@@ -120,3 +128,12 @@ function guess(btn){
         }
   // add game logic here
 }
+
+function randomizedPattern() {
+  for(let i=0;i<pattern.length;i++){ // for each clue that is revealed so far
+    pattern[i]=Math.floor((Math.random()*3+1))
+  }
+}
+
+
+
