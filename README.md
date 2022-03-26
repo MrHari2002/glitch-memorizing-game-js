@@ -45,8 +45,9 @@ If you recorded multiple GIFs for all the implemented features, you can add them
 
 ## Reflection Questions
 1. If you used any outside resources to help complete your submission (websites, books, people, etc) list them here. 
-[YOUR ANSWER HERE]
-
+https://stackoverflow.com/
+When I was having problem with closing audio context I researched online about the details of how the functions are used.
+https://developer.mozilla.org/en-US/docs/Web/API/
 2. What was a challenge you encountered in creating this submission (be specific)? How did you overcome it? (recommended 200 - 400 words) 
 [YOUR ANSWER HERE]
 
