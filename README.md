@@ -50,6 +50,7 @@ When I was having problem with closing audio context I researched online about t
 https://developer.mozilla.org/en-US/docs/Web/API/
 2. What was a challenge you encountered in creating this submission (be specific)? How did you overcome it? (recommended 200 - 400 words) 
 [YOUR ANSWER HERE]
+The challenge I encountered was that when I was implementing the music module I had a lot of misunderstanding of how did that work. I was given a chunk of code that implemented a lot of functionality that I wasn't too sure about. I had a problem that when I was pressing the button I was able to make the sound but I was not able to stop it. So I first looked at the original code and tried to find whenever it was played and whenever it was not played and I looked into the functionality of the context. Still I was not able to solve the problem. So I halted for another day and looked it again the next day. I decided to go use the debug function of the browser(F12 -> Console) and I found out that I was not doing correctly with the name of one of the function.
 
 3. What questions about web development do you have after completing your submission? (recommended 100 - 300 words) 
 [YOUR ANSWER HERE]
@@ -66,7 +67,7 @@ https://developer.mozilla.org/en-US/docs/Web/API/
 
 ## License
 
-    Copyright [YOUR NAME]
+    Copyright [Hengrui Jia]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
